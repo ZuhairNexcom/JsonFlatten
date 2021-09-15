@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace JsonFlatten
 {
@@ -23,9 +16,10 @@ namespace JsonFlatten
                 if (File.Exists(rawJson1))
                 {
                     using var sr = new StreamReader(rawJson1);
-                    var jsonString = sr.ReadToEnd();
-                    var oDict = JsonHelper.DeserializeAndFlatten(jsonString);
+                    var rawJsonString = sr.ReadToEnd();
+                    var oDict = JsonHelper.DeserializeAndFlatten(rawJsonString);
                     var nDict = JsonHelper.TrimArrayValuesInDictionary(oDict);
+                    var translatorJsonString = JsonConvert.SerializeObject(nDict);
                     foreach (var kvp in nDict)
                     {
                         Console.WriteLine(kvp.Key + ": " + kvp.Value);
