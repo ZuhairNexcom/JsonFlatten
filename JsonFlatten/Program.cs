@@ -19,6 +19,7 @@ namespace JsonFlatten
 
             try
             {
+
                 if (File.Exists(rawJson1))
                 {
                     using var sr = new StreamReader(rawJson1);
