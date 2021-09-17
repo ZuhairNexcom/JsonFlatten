@@ -62,9 +62,9 @@ namespace JsonFlatten
                 var nKey = nextElement.Key;
                 var nValue = nextElement.Value;
                 // check if key has a last character is Digit
-                if (char.IsDigit(cKey[^1]))
+                if (char.IsDigit(cKey[^1]) && cKey[^2] == '_')
                 {
-                    if (char.IsDigit(cKey[^1]) && char.IsDigit(nKey[^1]))
+                    if (char.IsDigit(cKey[^1]) && char.IsDigit(nKey[^1]) && cKey[^2] == '_' && nKey[^2] == '_')
                     {
                         sbValue.Append(cValue + ",");
                         if (oDictioanry.ContainsKey(cKey))
